@@ -46,4 +46,8 @@ quantile(T,seq(0.9,1,0.01))
   # max 247
   hist(T[which(T<=247)],main="Histogram of Bottom 99% of Times",xlab="Time (ns)",breaks=30)
 
+# 99% of calls take less than 247 ns.
+# There also doesn't appear to be a large correlation between N and T.
+# The implementation must be correct for an O(logn) time.
+  
 detach(extract_min_binomial)
