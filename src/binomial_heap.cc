@@ -23,7 +23,6 @@ Binomial_Heap::Binomial_Heap(const Binomial_Heap &bh){
 	head_ = copy_tree(bh.head(), nullptr);
 }
 Binomial_Heap::~Binomial_Heap(){
-	//cout << "~Binomial_Heap() was called!\n";
 	if(delete_on_destroy_)
 		delete_tree(head_);
 }
@@ -57,7 +56,6 @@ bool Binomial_Heap::empty() const {
 
 
 Node *Binomial_Heap::insert(int x){
-	//cout << "insert() was called!\n";
 	Binomial_Heap temp;
 
 	Node *new_node = new Node;
@@ -71,20 +69,16 @@ Node *Binomial_Heap::insert(int x){
 }
 
 int Binomial_Heap::minimum() const {
-	//cout << "minimum() was called!\n";
 	if(empty())
 		throw range_error("Tried to call .minimum() on an empty Binomial_Heap");
 	Node *pre_min_node = _minimum();
 	if(pre_min_node == nullptr){
-		//cout << "returning from minimum() with " << head_->key_ << "\n";
 		return head_->key_;
 	}
 
-	//cout << "returning from minimum() with " << pre_min_node->sibling_->key_ << "\n";
 	return pre_min_node->sibling_->key_;	
 }
 int Binomial_Heap::extract_min(){
-	//cout << "extract_min() was called!\n";
 	if(empty())
 		throw range_error("Tried to call .extract_min() on an empty Binomial_Heap");
 
@@ -99,8 +93,6 @@ int Binomial_Heap::extract_min(){
 	}
 	
 	if(min_node->degree_ == 0){ // if min_node has no children, we don't have to worry about the children of min_node because there aren't any
-		//cout << "returning from extract_min() with " << min_node->key_ << " because heap is now empty or min_node->degree_ == 0\n";
-		//cout << "empty(): " << empty() << "\n";
 		return min_node->key_;
 	}
 	
@@ -124,13 +116,11 @@ int Binomial_Heap::extract_min(){
 	temp.head(new_head);
 	temp.delete_on_destroy_ = false;
 
-	//cout << "temp heap:\n" << temp << "\n";
 
 	this->heap_union(temp);	// merge the children of min_node back into this heap
 
 	int min = min_node->key_;
 	delete min_node;
-	//cout << "returning from extract_min() with " << min << "\n";
 	return min;
 	
 }
@@ -138,20 +128,16 @@ void Binomial_Heap::heap_union(Binomial_Heap &bh){
 	// takes bh and puts its nodes into this's heap
 	// it then makes bh's head a nullptr so it can be used again
 	// does not preserve either of the two heaps
-	//cout << "heap_union() was called!\n";
 
-	if(bh.empty()){
-		//cout << "uniting empty heap onto this!\n";
+	if(bh.empty())
 		return;
-	}
+	
 	if(this->empty()) {
-		//cout << "uniting onto an empty heap!\n";
 		this->head_ = bh.head();
 		bh.head(nullptr);
 		return;
 	}
 
-	//cout << "uniting two non empty heaps\n";
 	this->binomial_heap_merge(bh);
 
 	Node *prev = nullptr;
@@ -210,9 +196,6 @@ void Binomial_Heap::head(Node *h){
 Node *Binomial_Heap::_minimum() const {
 	// assumes heap is not empty, returns node whose sibling is the minimum
 	// useful for extracting the min node
-	
-
-	//cout << "_minimum() was called!\n";
 
 	Node *pre_min_node = nullptr;
 	Node *previous = nullptr;
@@ -227,7 +210,6 @@ Node *Binomial_Heap::_minimum() const {
 		current = current->sibling_;
 	}
 
-	//cout << "returning from _minimum() with " << pre_min_node << "\n";
 	return pre_min_node;	
 }
 
@@ -240,7 +222,6 @@ void Binomial_Heap::binomial_link(Node *y,Node *z) {
 }
 
 void Binomial_Heap::binomial_heap_merge(Binomial_Heap &bh){
-	//cout << "merge() was called!\n";
 	// takes two non emptry heaps and merges their root lists
 
 	Node *current1 = this->head_;	
@@ -279,7 +260,6 @@ void Binomial_Heap::binomial_heap_merge(Binomial_Heap &bh){
 
 void Binomial_Heap::bubble_up(Node *node){
 
-	//cout << "\tbubbling up\n\t" << *node << "\n";
 
 	if(node->parent_ == nullptr)
 		return;
@@ -326,7 +306,6 @@ ostream &post_print(ostream &o, const Binomial_Heap &bh){
 }
 
 ostream &post_print_tree(ostream &o, const Node *root, int indents){
-	// TO DO
 	if(root == nullptr)
 		return o;
 
