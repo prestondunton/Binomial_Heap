@@ -7,7 +7,6 @@
 #include <vector>
 #include <cmath> //for pow for calculating size()
 
-
 class Node {
     public:
 
