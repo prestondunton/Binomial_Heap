@@ -7,15 +7,6 @@
 #include <vector>
 #include <cmath> //for pow for calculating size()
 
-/*
- * TO DO
- * RAII
- * 	union should take a bh by value so that its nodes aren't deleted for temp
- * finish methods and test functionality
- * make class templated
- * make binary heap (maybe set?)
- * time test 
- */
 
 class Node {
     public:
@@ -78,4 +69,4 @@ std::ostream &pre_print_tree(std::ostream &, const Node *, int = 0);
 std::ostream &operator<<(std::ostream &, const Binomial_Heap &);
 
 
-#endif /*BINOMIAL_HEAP_DEFINED */
+#endif /*BINOMIAL_HEAP_INCLUDED */
