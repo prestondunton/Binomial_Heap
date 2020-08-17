@@ -1,6 +1,8 @@
 # Binomial_Heap
 An implementation of the binomial heap data structure.
 
+<img src="http://staff.ustc.edu.cn/~csli/graduate/algorithms/book6/404_a.gif" alt="Binomial Heap" width="50%" height="50%">
+
 ### Overview
 Binomial heaps are a special type of heap which support the .heap_union() method in O(log(n)) time.  In fact, most methods of the binomial heap run in O(log(n)) time.  Binomial heaps are structured as a linked list of binomial trees, whose roots all have unique degrees.  Binomial trees are defined recursively and are structured so that a tree B<sub>k</sub> has a root of degree k and 2<sup>k</sup> nodes.  A binomial heap is a collection of these trees where each tree satisfies the heap property. This property and the fact that the root list of the heap contains at most log(n) roots is what allows most operations to run in log(n) time.  For more reading about the data structure, visit https://en.wikipedia.org/wiki/Binomial_heap.
 
